@@ -6,9 +6,10 @@ interface ProductPriceProps {
   originalPrice?: number | null;
   priceTiers: PriceTier[];
   currency?: string;
+  unit?: string;
 }
 
-export function ProductPrice({ price, originalPrice, priceTiers, currency = 'USD' }: ProductPriceProps) {
+export function ProductPrice({ price, originalPrice, priceTiers, currency = 'USD', unit = 'pieces' }: ProductPriceProps) {
   if (priceTiers && priceTiers.length > 0) {
     return (
       <div className="flex items-center gap-x-6 py-4">
@@ -18,7 +19,7 @@ export function ProductPrice({ price, originalPrice, priceTiers, currency = 'USD
               {formatPrice(tier.price, currency)}
             </span>
             <span className="text-[14px] text-[#666]">
-              {tier.min_quantity}{tier.max_quantity ? ` - ${tier.max_quantity}` : '+'} pieces
+              {tier.min_quantity}{tier.max_quantity ? ` - ${tier.max_quantity}` : '+'} {unit}
             </span>
           </div>
         ))}
@@ -31,6 +32,9 @@ export function ProductPrice({ price, originalPrice, priceTiers, currency = 'USD
       <div className="flex items-end gap-2">
         <span className="text-[26px] font-bold text-alibaba-dark">
           {formatPrice(price, currency)}
+        </span>
+        <span className="text-[14px] text-[#666] mb-1">
+          / {unit}
         </span>
         {originalPrice && (
           <span className="text-[14px] text-[#999] line-through mb-1.5">

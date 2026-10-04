@@ -107,6 +107,7 @@ export default async function ProductPage({ params }: Props) {
                     originalPrice={product.original_price}
                     priceTiers={product.price_tiers || []}
                     currency={product.currency}
+                    unit={product.min_order_unit}
                   />
                 </div>
 

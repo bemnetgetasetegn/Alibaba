@@ -118,6 +118,7 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
   const [specs, setSpecs] = useState<SpecItem[]>(initialData?.product_specifications || []);
   const [options, setOptions] = useState<OptionItem[]>(initialData?.product_options || []);
   const [tiers, setTiers] = useState<TierItem[]>(initialData?.price_tiers || []);
+  const [minOrderUnit, setMinOrderUnit] = useState<string>(initialData?.min_order_unit || 'tons');
 
   // Auto-generate slug
   const [name, setName] = useState(initialData?.name || '');
@@ -618,13 +619,37 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Minimum Order Unit</label>
+            <div className="flex justify-between items-center mb-1">
+              <label className="block text-sm font-semibold text-gray-700">Minimum Order Unit *</label>
+              <span className="text-xs text-gray-500">
+                Selected: <strong className="text-[#D64000]">{minOrderUnit}</strong>
+              </span>
+            </div>
+            {/* Quick unit pills */}
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {['tons', 'pieces', 'sets', 'meters', 'kg', 'cartons'].map((u) => (
+                <button
+                  key={u}
+                  type="button"
+                  onClick={() => setMinOrderUnit(u)}
+                  className={`text-xs px-2.5 py-1 rounded-md font-medium border transition-colors ${
+                    minOrderUnit.toLowerCase() === u
+                      ? 'bg-brand-orange text-white border-brand-orange shadow-sm font-semibold'
+                      : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-200'
+                  }`}
+                >
+                  {u}
+                </button>
+              ))}
+            </div>
             <input 
               type="text" 
               name="min_order_unit" 
-              defaultValue={initialData?.min_order_unit || 'pieces'} 
+              value={minOrderUnit} 
+              onChange={(e) => setMinOrderUnit(e.target.value)} 
               className="w-full px-3 py-2 border border-[#ddd] rounded-md text-sm outline-none focus:border-[#D64000]" 
-              placeholder="e.g. pieces, tons, sets, meters" 
+              placeholder="e.g. tons, pieces, sets, meters" 
+              required
             />
           </div>
         </div>
@@ -923,18 +948,39 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
 
       {/* 7. Volume Pricing Tiers */}
       <div className="bg-white p-6 rounded-lg shadow-sm border border-[#ddd] space-y-4">
-        <div className="flex justify-between items-center border-b pb-2">
+        <div className="flex flex-wrap justify-between items-center border-b pb-2 gap-2">
           <div>
             <h3 className="text-lg font-bold text-[#222]">7. Tiered Volume Pricing Matrix</h3>
-            <p className="text-xs text-gray-500">Tiered bulk discounts (e.g. $650 for 3-24 tons, $630 for ≥25 tons).</p>
+            <p className="text-xs text-gray-500">
+              Tiered bulk discounts for <span className="font-semibold text-brand-orange uppercase">{minOrderUnit}</span> (e.g. $650 for 3-24 {minOrderUnit}, $630 for ≥25 {minOrderUnit}).
+            </p>
           </div>
-          <button 
-            type="button" 
-            onClick={() => setTiers([...tiers, { min_quantity: 1, max_quantity: null, price: 0 }])} 
-            className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1.5 rounded-md font-semibold transition-colors"
-          >
-            + Add Price Tier
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs font-semibold text-gray-500">Unit:</span>
+            <div className="flex gap-1">
+              {['tons', 'pieces', 'sets', 'kg'].map((u) => (
+                <button
+                  key={u}
+                  type="button"
+                  onClick={() => setMinOrderUnit(u)}
+                  className={`text-xs px-2.5 py-1 rounded border transition-colors ${
+                    minOrderUnit.toLowerCase() === u
+                      ? 'bg-brand-orange text-white border-brand-orange font-bold shadow-xs'
+                      : 'bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-300'
+                  }`}
+                >
+                  {u}
+                </button>
+              ))}
+            </div>
+            <button 
+              type="button" 
+              onClick={() => setTiers([...tiers, { min_quantity: 1, max_quantity: null, price: 0 }])} 
+              className="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1.5 rounded-md font-semibold transition-colors ml-1"
+            >
+              + Add Price Tier
+            </button>
+          </div>
         </div>
         {tiers.length === 0 ? (
           <p className="text-sm text-gray-400 py-2">No volume tiers. The product will sell at the base price.</p>
@@ -943,27 +989,33 @@ export function ProductForm({ initialData, mode }: ProductFormProps) {
             {tiers.map((tier: TierItem, i: number) => (
               <div key={i} className="flex flex-col sm:flex-row gap-2 items-center">
                 <div className="w-full sm:w-1/3">
-                  <label className="text-[11px] text-gray-500 block mb-0.5">Min Quantity</label>
+                  <label className="text-[11px] text-gray-500 block mb-0.5">
+                    Min Quantity ({minOrderUnit})
+                  </label>
                   <input 
                     type="number" 
                     value={tier.min_quantity} 
                     onChange={e => { const n = [...tiers]; n[i].min_quantity = parseInt(e.target.value) || 1; setTiers(n); }} 
-                    placeholder="Min Qty (e.g. 3)" 
+                    placeholder={`Min Qty (e.g. 3)`} 
                     className="w-full px-3 py-1.5 border rounded text-sm" 
                   />
                 </div>
                 <div className="w-full sm:w-1/3">
-                  <label className="text-[11px] text-gray-500 block mb-0.5">Max Quantity (empty for ≥)</label>
+                  <label className="text-[11px] text-gray-500 block mb-0.5">
+                    Max Quantity ({minOrderUnit}, empty for ≥)
+                  </label>
                   <input 
                     type="number" 
                     value={tier.max_quantity || ''} 
                     onChange={e => { const n = [...tiers]; n[i].max_quantity = e.target.value ? parseInt(e.target.value) : null; setTiers(n); }} 
-                    placeholder="e.g. 24 (or empty for ≥)" 
+                    placeholder={`e.g. 24 (or empty for ≥)`} 
                     className="w-full px-3 py-1.5 border rounded text-sm" 
                   />
                 </div>
                 <div className="w-full sm:flex-1">
-                  <label className="text-[11px] text-gray-500 block mb-0.5">Unit Price (USD)</label>
+                  <label className="text-[11px] text-gray-500 block mb-0.5">
+                    Unit Price (USD / {minOrderUnit})
+                  </label>
                   <input 
                     type="number" 
                     step="0.01" 

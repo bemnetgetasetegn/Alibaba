@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const mainImage = product.product_images?.[0]?.image_url;
 
   return {
-    title: `${product.name} - Alibaba.com`,
-    description: product.description?.substring(0, 160) || `Buy ${product.name} on Alibaba.com`,
+    title: `${product.name} - WeixinSteel`,
+    description: product.description?.substring(0, 160) || `Buy ${product.name} on WeixinSteel`,
     openGraph: {
-      title: `${product.name} - Alibaba.com`,
-      description: product.description?.substring(0, 160) || `Buy ${product.name} on Alibaba.com`,
+      title: `${product.name} - WeixinSteel`,
+      description: product.description?.substring(0, 160) || `Buy ${product.name} on WeixinSteel`,
       images: mainImage ? [mainImage] : [],
     },
   };

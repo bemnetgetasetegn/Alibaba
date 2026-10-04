@@ -18,8 +18,8 @@ export function Footer() {
           <div>
             <h3 className="text-[16px] font-bold text-alibaba-dark mb-4">About Us</h3>
             <ul className="space-y-2 text-[14px] text-alibaba-secondary">
-              <li><Link href="#" className="hover:text-brand-orange">About Alibaba.com</Link></li>
-              <li><Link href="#" className="hover:text-brand-orange">About Alibaba Group</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">About WeixinSteel</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">About Our Factory</Link></li>
               <li><Link href="#" className="hover:text-brand-orange">Sitemap</Link></li>
             </ul>
           </div>
@@ -34,10 +34,10 @@ export function Footer() {
           <div>
             <h3 className="text-[16px] font-bold text-alibaba-dark mb-4">Categories</h3>
             <ul className="space-y-2 text-[14px] text-alibaba-secondary">
-              <li><Link href="#" className="hover:text-brand-orange">Machinery</Link></li>
-              <li><Link href="#" className="hover:text-brand-orange">Consumer Electronics</Link></li>
-              <li><Link href="#" className="hover:text-brand-orange">Apparel</Link></li>
-              <li><Link href="#" className="hover:text-brand-orange">Home & Garden</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">PC Strand & Wire</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">Prestressed Steel</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">Concrete Reinforcement</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">Industrial Hardware</Link></li>
             </ul>
           </div>
         </div>
@@ -46,7 +46,7 @@ export function Footer() {
       {/* Tier 2 */}
       <div className="bg-[#e8e8e8] py-4">
         <div className="max-w-[1440px] mx-auto px-10 text-center flex flex-col md:flex-row items-center justify-between text-[14px] text-alibaba-secondary">
-          <p>&copy; {new Date().getFullYear()} Alibaba.com. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} WeixinSteel. All rights reserved.</p>
           <div className="flex gap-4 mt-2 md:mt-0">
             <Link href="#" className="hover:text-brand-orange">Terms of Use</Link>
             <Link href="#" className="hover:text-brand-orange">Privacy Policy</Link>

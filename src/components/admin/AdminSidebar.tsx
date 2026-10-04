@@ -25,8 +25,8 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="h-16 flex items-center justify-center border-b border-[#ddd]">
-          <h1 className="text-xl font-bold text-[#222]">
-            TradeHub <span className="bg-[#D64000] text-white text-xs px-2 py-1 rounded ml-1">Admin</span>
+          <h1 className="text-xl font-black text-[#222]">
+            Weixin<span className="text-brand-orange">Steel</span> <span className="bg-[#D64000] text-white text-[11px] font-bold px-2 py-0.5 rounded ml-1">Admin</span>
           </h1>
         </div>
         

@@ -3,11 +3,9 @@
 import { useState } from 'react'
 import { loginAction } from '@/app/actions/auth'
 
-import Image from 'next/image'
-
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
-  const [email, setEmail] = useState('admin@alibaba.com')
+  const [email, setEmail] = useState('admin@weixinsteel.com')
   const [password, setPassword] = useState('admin123')
 
   async function handleSubmit(formData: FormData) {
@@ -21,15 +19,15 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-6 bg-white p-8 rounded-lg shadow-sm border border-[#ddd]">
         <div className="flex flex-col items-center">
-          <Image 
-            src="/logo.png" 
-            alt="Alibaba.com" 
-            width={180} 
-            height={42} 
-            className="h-10 w-auto object-contain mb-3" 
-            priority
-          />
-          <h2 className="text-xl font-bold text-[#222]">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-3xl font-black tracking-tight text-[#111]">
+              Weixin<span className="text-brand-orange">Steel</span>
+            </span>
+            <span className="bg-[#D64000] text-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">
+              Admin
+            </span>
+          </div>
+          <h2 className="text-lg font-bold text-[#222]">
             Admin Dashboard
           </h2>
           <p className="mt-1 text-center text-xs text-gray-500">
@@ -44,7 +42,7 @@ export default function LoginPage() {
           </div>
           <div className="flex justify-between py-0.5">
             <span className="text-gray-600">Email:</span>
-            <span className="font-mono font-semibold">admin@alibaba.com</span>
+            <span className="font-mono font-semibold">admin@weixinsteel.com</span>
           </div>
           <div className="flex justify-between py-0.5">
             <span className="text-gray-600">Password:</span>

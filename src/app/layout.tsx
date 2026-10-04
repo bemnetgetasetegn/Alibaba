@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Alibaba.com - Leading B2B e-Commerce Marketplace',
-  description: 'Find quality products, manufacturers, and verified suppliers on Alibaba.com.',
+  title: 'WeixinSteel - Leading Steel & Industrial Metal Products',
+  description: 'Find quality steel strands, PC wire, and industrial metal products from WeixinSteel.',
 };
 
 export default function RootLayout({

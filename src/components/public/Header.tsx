@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 
 export function Header() {
@@ -39,20 +38,15 @@ export function Header() {
             </svg>
           </button>
 
-          {/* Alibaba logo */}
+          {/* WeixinSteel logo */}
           <Link
             href="/"
-            className="flex-shrink-0 flex items-center pr-0.5"
-            aria-label="Alibaba Home"
+            className="flex-shrink-0 flex items-center pr-1"
+            aria-label="WeixinSteel Home"
           >
-            <Image
-              src="/logo.png"
-              alt="Alibaba.com"
-              width={100}
-              height={26}
-              className="h-6 w-auto object-contain"
-              priority
-            />
+            <span className="text-[17px] font-black tracking-tight text-[#111] leading-none">
+              Weixin<span className="text-brand-orange">Steel</span>
+            </span>
           </Link>
 
           {/* Search input */}
@@ -97,15 +91,10 @@ export function Header() {
       <div className="h-[72px] bg-white border-b border-[#ddd] hidden md:block">
         <div className="max-w-[1580px] mx-auto px-10 h-full flex items-center justify-between gap-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center flex-shrink-0">
-            <Image
-              src="/logo.png"
-              alt="Alibaba.com"
-              width={160}
-              height={38}
-              className="h-9 w-auto object-contain"
-              priority
-            />
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
+            <span className="text-[26px] font-black tracking-tight text-[#111] group-hover:opacity-95 transition-opacity">
+              Weixin<span className="text-brand-orange">Steel</span>
+            </span>
           </Link>
 
           {/* Search Bar */}

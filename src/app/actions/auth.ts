@@ -12,10 +12,11 @@ export async function loginAction(formData: FormData) {
 
   // Offline / Demo fallback when Supabase is not yet connected
   if (!isConfigured) {
-    if (email.toLowerCase() === 'admin@alibaba.com' && password === 'admin123') {
+    const cleanEmail = email.toLowerCase();
+    if ((cleanEmail === 'admin@weixinsteel.com' || cleanEmail === 'admin@alibaba.com') && password === 'admin123') {
       redirect('/admin');
     }
-    return { error: 'Invalid credentials. Use demo: admin@alibaba.com / admin123 (or access /admin directly)' };
+    return { error: 'Invalid credentials. Use demo: admin@weixinsteel.com / admin123 (or access /admin directly)' };
   }
 
   const supabase = await createClient();

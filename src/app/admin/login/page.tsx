@@ -3,8 +3,12 @@
 import { useState } from 'react'
 import { loginAction } from '@/app/actions/auth'
 
+import Image from 'next/image'
+
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
+  const [email, setEmail] = useState('admin@alibaba.com')
+  const [password, setPassword] = useState('admin123')
 
   async function handleSubmit(formData: FormData) {
     const res = await loginAction(formData)
@@ -15,43 +19,71 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-sm border border-[#ddd]">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-[#222]">
-            TradeHub <span className="text-[#D64000]">Admin</span>
+      <div className="max-w-md w-full space-y-6 bg-white p-8 rounded-lg shadow-sm border border-[#ddd]">
+        <div className="flex flex-col items-center">
+          <Image 
+            src="/logo.png" 
+            alt="Alibaba.com" 
+            width={180} 
+            height={42} 
+            className="h-10 w-auto object-contain mb-3" 
+            priority
+          />
+          <h2 className="text-xl font-bold text-[#222]">
+            Admin Dashboard
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Sign in to access the admin dashboard
+          <p className="mt-1 text-center text-xs text-gray-500">
+            Sign in to manage products, images, and company info
           </p>
         </div>
-        <form className="mt-8 space-y-6" action={handleSubmit}>
+
+        {/* Demo Credentials Box */}
+        <div className="bg-orange-50 border border-orange-200 rounded-md p-3 text-xs text-orange-900">
+          <div className="font-bold flex items-center gap-1 mb-1">
+            <span>🔑 Demo Login Credentials:</span>
+          </div>
+          <div className="flex justify-between py-0.5">
+            <span className="text-gray-600">Email:</span>
+            <span className="font-mono font-semibold">admin@alibaba.com</span>
+          </div>
+          <div className="flex justify-between py-0.5">
+            <span className="text-gray-600">Password:</span>
+            <span className="font-mono font-semibold">admin123</span>
+          </div>
+        </div>
+
+        <form className="mt-4 space-y-5" action={handleSubmit}>
           {error && (
             <div className="bg-red-50 text-red-600 p-3 rounded text-sm text-center border border-red-200">
               {error}
             </div>
           )}
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div className="mb-4">
-              <label htmlFor="email-address" className="sr-only">Email address</label>
+          <div className="space-y-3">
+            <div>
+              <label htmlFor="email-address" className="block text-xs font-semibold text-gray-700 mb-1">Email address</label>
               <input
                 id="email-address"
                 name="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ddd] placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#D64000] focus:border-[#D64000] focus:z-10 sm:text-sm"
+                className="w-full px-3 py-2 border border-[#ddd] placeholder-gray-400 text-gray-900 rounded-md focus:outline-none focus:border-[#D64000] text-sm"
                 placeholder="Email address"
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">Password</label>
+              <label htmlFor="password" className="block text-xs font-semibold text-gray-700 mb-1">Password</label>
               <input
                 id="password"
                 name="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-[#ddd] placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#D64000] focus:border-[#D64000] focus:z-10 sm:text-sm"
+                className="w-full px-3 py-2 border border-[#ddd] placeholder-gray-400 text-gray-900 rounded-md focus:outline-none focus:border-[#D64000] text-sm"
                 placeholder="Password"
               />
             </div>

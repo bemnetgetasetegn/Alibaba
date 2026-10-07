@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'WeixinSteel - Leading Steel & Industrial Metal Products',
-  description: 'Find quality steel strands, PC wire, and industrial metal products from WeixinSteel.',
+  title: '2Emaeket - Global B2B Marketplace & Direct Factory Sourcing',
+  description: 'Find quality products, steel, hardware, and verified manufacturers on 2Emaeket.',
 };
 
 export default function RootLayout({

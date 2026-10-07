@@ -38,14 +38,14 @@ export function Header() {
             </svg>
           </button>
 
-          {/* WeixinSteel logo */}
+          {/* 2Emaeket logo */}
           <Link
             href="/"
             className="flex-shrink-0 flex items-center pr-1"
-            aria-label="WeixinSteel Home"
+            aria-label="2Emaeket Home"
           >
-            <span className="text-[17px] font-black tracking-tight text-[#111] leading-none">
-              Weixin<span className="text-brand-orange">Steel</span>
+            <span className="text-[19px] font-black tracking-tight text-[#111] leading-none">
+              2E<span className="text-brand-orange">maeket</span>
             </span>
           </Link>
 
@@ -93,7 +93,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
             <span className="text-[26px] font-black tracking-tight text-[#111] group-hover:opacity-95 transition-opacity">
-              Weixin<span className="text-brand-orange">Steel</span>
+              2E<span className="text-brand-orange">maeket</span>
             </span>
           </Link>
 

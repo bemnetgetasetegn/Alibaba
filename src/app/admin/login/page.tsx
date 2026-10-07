@@ -5,7 +5,7 @@ import { loginAction } from '@/app/actions/auth'
 
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
-  const [email, setEmail] = useState('admin@weixinsteel.com')
+  const [email, setEmail] = useState('admin@2emaeket.com')
   const [password, setPassword] = useState('admin123')
 
   async function handleSubmit(formData: FormData) {
@@ -21,7 +21,7 @@ export default function LoginPage() {
         <div className="flex flex-col items-center">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-3xl font-black tracking-tight text-[#111]">
-              Weixin<span className="text-brand-orange">Steel</span>
+              2E<span className="text-brand-orange">maeket</span>
             </span>
             <span className="bg-[#D64000] text-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">
               Admin
@@ -42,7 +42,7 @@ export default function LoginPage() {
           </div>
           <div className="flex justify-between py-0.5">
             <span className="text-gray-600">Email:</span>
-            <span className="font-mono font-semibold">admin@weixinsteel.com</span>
+            <span className="font-mono font-semibold">admin@2emaeket.com</span>
           </div>
           <div className="flex justify-between py-0.5">
             <span className="text-gray-600">Password:</span>

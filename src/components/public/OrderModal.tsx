@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Product } from '@/types/database';
-import { formatPrice } from '@/lib/utils';
 import { Modal } from '@/components/ui/Modal';
 import { submitOrderAction } from '@/app/actions/orders';
 import Image from 'next/image';
@@ -37,9 +36,6 @@ export function OrderModal({
   const [telegramWarning, setTelegramWarning] = useState<string | null>(null);
   const [orderId, setOrderId] = useState<string | null>(null);
 
-  // Price calculation
-  const subtotal = (product.price || 0) * (quantity || 0);
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMessage(null);
@@ -50,7 +46,7 @@ export function OrderModal({
     formData.append('product_slug', product.slug);
     formData.append('quantity', quantity.toString());
     formData.append('unit', unit);
-    formData.append('unit_price', product.price.toString());
+    formData.append('unit_price', (product.price || 0).toString());
     formData.append('currency', product.currency || 'USD');
 
     formData.append('customer_name', customerName);
@@ -104,7 +100,7 @@ export function OrderModal({
               <span>✈️ Forwarded to Telegram Channel</span>
             </p>
             <p className="text-xs text-gray-600">
-              Our factory sales representatives will contact you shortly via <strong>{customerPhone}</strong> to confirm shipping specs, proforma invoice, and payment terms.
+              Our factory sales representatives will contact you shortly via <strong>{customerPhone}</strong> to confirm specifications, shipping schedule, and proforma invoice.
             </p>
             {telegramWarning && (
               <p className="text-[11px] text-amber-700 bg-amber-100/60 p-2 rounded mt-2 border border-amber-300">
@@ -134,7 +130,7 @@ export function OrderModal({
           {/* Product Overview Card */}
           <div className="bg-[#f8f8f8] border border-[#e5e5e5] rounded-lg p-3.5 flex items-center gap-3.5">
             {mainImageUrl ? (
-              <div className="relative w-16 h-16 rounded bg-white border border-[#ddd] overflow-hidden flex-shrink-0">
+              <div className="relative w-14 h-14 rounded bg-white border border-[#ddd] overflow-hidden flex-shrink-0">
                 <Image
                   src={mainImageUrl}
                   alt={product.name}
@@ -143,7 +139,7 @@ export function OrderModal({
                 />
               </div>
             ) : (
-              <div className="w-16 h-16 rounded bg-gray-200 flex items-center justify-center text-xs text-gray-500 flex-shrink-0">
+              <div className="w-14 h-14 rounded bg-gray-200 flex items-center justify-center text-xs text-gray-500 flex-shrink-0">
                 Item
               </div>
             )}
@@ -151,14 +147,9 @@ export function OrderModal({
               <h4 className="text-sm font-semibold text-alibaba-dark line-clamp-1" title={product.name}>
                 {product.name}
               </h4>
-              <div className="flex items-center gap-3 mt-1 text-xs">
-                <span className="font-bold text-brand-orange text-sm">
-                  {formatPrice(product.price, product.currency)} / {unit}
-                </span>
-                <span className="text-gray-500">
-                  Min Order: {product.min_order_quantity} {unit}
-                </span>
-              </div>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Minimum Order Quantity: <span className="font-medium text-gray-700">{product.min_order_quantity} {unit}</span>
+              </p>
             </div>
           </div>
 
@@ -266,16 +257,10 @@ export function OrderModal({
             </div>
           </div>
 
-          {/* Subtotal Summary Footer */}
+          {/* Action Footer (Estimated Price Removed) */}
           <div className="pt-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-3 bg-gray-50 p-3 rounded-lg">
-            <div>
-              <div className="text-xs text-gray-500">Estimated Total:</div>
-              <div className="text-xl font-black text-brand-orange">
-                {formatPrice(subtotal, product.currency)}
-              </div>
-              <div className="text-[11px] text-gray-400">
-                {quantity} {unit} @ {formatPrice(product.price, product.currency)} / {unit}
-              </div>
+            <div className="text-xs text-gray-600">
+              Quantity: <strong className="text-alibaba-dark font-bold text-sm">{quantity} {unit}</strong>
             </div>
             <div className="flex items-center gap-2">
               <button

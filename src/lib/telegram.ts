@@ -51,10 +51,8 @@ export async function sendTelegramOrderNotification(
 🚨 <b>NEW ORDER RECEIVED — WEIXINSTEEL</b>
 ━━━━━━━━━━━━━━━━━━━━━
 📦 <b>Product:</b> ${escapeHtml(payload.productName)}
-💰 <b>Unit Price:</b> ${formattedUnitPrice} / ${escapeHtml(payload.unit)}
 📊 <b>Quantity:</b> ${payload.quantity} ${escapeHtml(payload.unit)}
-💵 <b>Estimated Total:</b> ${formattedSubtotal}
-
+${payload.unitPrice > 0 ? `💰 <b>Base Price:</b> ${formattedUnitPrice} / ${escapeHtml(payload.unit)}\n` : ''}
 👤 <b>CUSTOMER DETAILS:</b>
 • <b>Name:</b> ${escapeHtml(payload.customerName)}
 • <b>Phone / WhatsApp:</b> <code>${escapeHtml(payload.customerPhone)}</code>

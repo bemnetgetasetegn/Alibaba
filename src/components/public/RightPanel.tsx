@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { Product } from '@/types/database';
 import { formatPrice } from '@/lib/utils';
 import { Modal } from '@/components/ui/Modal';
+import { OrderModal } from '@/components/public/OrderModal';
 
 interface RightPanelProps {
   product: Product;
 }
 
 export function RightPanel({ product }: RightPanelProps) {
+  const [orderOpen, setOrderOpen] = useState(false);
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [inquirySent, setInquirySent] = useState(false);
@@ -63,21 +65,32 @@ export function RightPanel({ product }: RightPanelProps) {
         </div>
 
         {/* Actions */}
-        <div className="space-y-3 mb-6">
+        <div className="space-y-2.5 mb-6">
           <button 
-            type="button"
-            onClick={() => setInquiryOpen(true)}
-            className="h-12 w-full rounded-full bg-[#D64000] text-white font-bold text-[15px] hover:bg-[#C03800] transition-colors shadow-sm flex items-center justify-center cursor-pointer"
+            type="button" 
+            onClick={() => setOrderOpen(true)}
+            className="h-12 w-full rounded-full bg-[#D64000] text-white font-bold text-[16px] hover:bg-[#C03800] active:scale-[0.99] transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
           >
-            Send inquiry
+            <span>Order now</span>
+            <span className="text-white/80 font-normal">→</span>
           </button>
-          <button 
-            type="button"
-            onClick={() => setChatOpen(true)}
-            className="h-12 w-full rounded-full border border-[#222] bg-white text-[#222] font-bold text-[15px] hover:bg-gray-50 transition-colors flex items-center justify-center cursor-pointer"
-          >
-            Chat now
-          </button>
+          
+          <div className="grid grid-cols-2 gap-2">
+            <button 
+              type="button" 
+              onClick={() => setInquiryOpen(true)}
+              className="h-11 rounded-full border border-brand-orange bg-orange-50/50 text-brand-orange font-bold text-[14px] hover:bg-orange-100/60 transition-colors flex items-center justify-center cursor-pointer"
+            >
+              Send inquiry
+            </button>
+            <button 
+              type="button" 
+              onClick={() => setChatOpen(true)}
+              className="h-11 rounded-full border border-[#222] bg-white text-[#222] font-bold text-[14px] hover:bg-gray-50 transition-colors flex items-center justify-center cursor-pointer"
+            >
+              Chat now
+            </button>
+          </div>
         </div>
 
         {/* Payment Section */}
@@ -92,6 +105,14 @@ export function RightPanel({ product }: RightPanelProps) {
           </div>
         </div>
       </div>
+
+      {/* Order Now Modal */}
+      <OrderModal
+        isOpen={orderOpen}
+        onClose={() => setOrderOpen(false)}
+        product={product}
+        initialQuantity={quantity}
+      />
 
       {/* Inquiry Modal */}
       <Modal isOpen={inquiryOpen} onClose={() => setInquiryOpen(false)} title="Send Inquiry to Supplier">
@@ -123,8 +144,8 @@ export function RightPanel({ product }: RightPanelProps) {
                 <label className="block text-xs font-semibold text-gray-700 mb-1">Target Price ({product.currency})</label>
                 <input 
                   type="number" 
-                  step="0.01"
-                  defaultValue={product.price}
+                  step="0.01" 
+                  defaultValue={product.price} 
                   className="w-full border border-gray-300 rounded px-3 py-1.5 text-sm"
                 />
               </div>

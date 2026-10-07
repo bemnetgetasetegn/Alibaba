@@ -189,3 +189,43 @@ CREATE POLICY "Authenticated users can update product images" ON storage.objects
 
 CREATE POLICY "Authenticated users can delete product images" ON storage.objects
   FOR DELETE TO authenticated USING (bucket_id = 'product-images');
+
+-- ============================================
+-- Orders Table
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS orders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  product_name TEXT NOT NULL,
+  product_slug TEXT,
+  quantity NUMERIC(12,2) NOT NULL DEFAULT 1,
+  unit TEXT NOT NULL DEFAULT 'pieces',
+  unit_price NUMERIC(12,2) NOT NULL DEFAULT 0,
+  currency TEXT DEFAULT 'USD',
+  customer_name TEXT NOT NULL,
+  customer_phone TEXT NOT NULL,
+  customer_email TEXT,
+  customer_telegram TEXT,
+  delivery_address TEXT NOT NULL,
+  notes TEXT,
+  status TEXT DEFAULT 'pending',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+
+-- Public can submit orders
+CREATE POLICY "Public can submit orders" ON orders
+  FOR INSERT WITH CHECK (true);
+
+-- Authenticated users can view and manage orders
+CREATE POLICY "Authenticated users can view orders" ON orders
+  FOR SELECT TO authenticated USING (true);
+
+CREATE POLICY "Authenticated users can update orders" ON orders
+  FOR UPDATE TO authenticated USING (true) WITH CHECK (true);
+
+CREATE POLICY "Authenticated users can delete orders" ON orders
+  FOR DELETE TO authenticated USING (true);
+

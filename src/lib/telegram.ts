@@ -48,7 +48,7 @@ export async function sendTelegramOrderNotification(
       .replace(/>/g, '&gt;');
 
   const messageText = `
-🚨 <b>NEW ORDER RECEIVED — 2EMAEKET</b>
+🚨 <b>NEW ORDER RECEIVED — 2EMARKET</b>
 ━━━━━━━━━━━━━━━━━━━━━
 📦 <b>Product:</b> ${escapeHtml(payload.productName)}
 📊 <b>Quantity:</b> ${payload.quantity} ${escapeHtml(payload.unit)}
@@ -60,7 +60,7 @@ ${payload.customerTelegram ? `• <b>Telegram:</b> ${escapeHtml(payload.customer
 
 ${payload.notes ? `📝 <b>Customer Notes:</b>\n${escapeHtml(payload.notes)}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━━
 ⏱ <i>Received: ${new Date().toISOString().replace('T', ' ').substring(0, 19)} UTC</i>
-🌐 <i>Source: 2Emaeket Storefront</i>
+🌐 <i>Source: 2Emarket Storefront</i>
   `.trim();
 
   try {

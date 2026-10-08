@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const mainImage = product.product_images?.[0]?.image_url;
 
   return {
-    title: `${product.name} - 2Emaeket`,
-    description: product.description?.substring(0, 160) || `Buy ${product.name} on 2Emaeket`,
+    title: `${product.name} - 2Emarket`,
+    description: product.description?.substring(0, 160) || `Buy ${product.name} on 2Emarket`,
     openGraph: {
-      title: `${product.name} - 2Emaeket`,
-      description: product.description?.substring(0, 160) || `Buy ${product.name} on 2Emaeket`,
+      title: `${product.name} - 2Emarket`,
+      description: product.description?.substring(0, 160) || `Buy ${product.name} on 2Emarket`,
       images: mainImage ? [mainImage] : [],
     },
   };

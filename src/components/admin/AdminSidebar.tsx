@@ -26,7 +26,7 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
       )}>
         <div className="h-16 flex items-center justify-center border-b border-[#ddd]">
           <h1 className="text-xl font-black text-[#222]">
-            2E<span className="text-brand-orange">maeket</span> <span className="bg-[#D64000] text-white text-[11px] font-bold px-2 py-0.5 rounded ml-1">Admin</span>
+            2E<span className="text-brand-orange">market</span> <span className="bg-[#D64000] text-white text-[11px] font-bold px-2 py-0.5 rounded ml-1">Admin</span>
           </h1>
         </div>
         

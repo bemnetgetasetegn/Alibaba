@@ -22,7 +22,7 @@ export async function loginAction(formData: FormData) {
     ) {
       redirect('/admin');
     }
-    return { error: 'Invalid credentials. Use demo: admin@2emaeket.com / admin123 (or access /admin directly)' };
+    return { error: 'Invalid credentials. Use demo: admin@2emarket.com / admin123 (or access /admin directly)' };
   }
 
   const supabase = await createClient();

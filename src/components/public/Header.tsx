@@ -38,14 +38,14 @@ export function Header() {
             </svg>
           </button>
 
-          {/* 2Emaeket logo */}
+          {/* 2Emarket logo */}
           <Link
             href="/"
             className="flex-shrink-0 flex items-center pr-1"
-            aria-label="2Emaeket Home"
+            aria-label="2Emarket Home"
           >
             <span className="text-[19px] font-black tracking-tight text-[#111] leading-none">
-              2E<span className="text-brand-orange">maeket</span>
+              2E<span className="text-brand-orange">market</span>
             </span>
           </Link>
 
@@ -93,7 +93,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
             <span className="text-[26px] font-black tracking-tight text-[#111] group-hover:opacity-95 transition-opacity">
-              2E<span className="text-brand-orange">maeket</span>
+              2E<span className="text-brand-orange">market</span>
             </span>
           </Link>
 

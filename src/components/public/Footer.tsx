@@ -18,7 +18,7 @@ export function Footer() {
           <div>
             <h3 className="text-[16px] font-bold text-alibaba-dark mb-4">About Us</h3>
             <ul className="space-y-2 text-[14px] text-alibaba-secondary">
-              <li><Link href="#" className="hover:text-brand-orange">About 2Emaeket</Link></li>
+              <li><Link href="#" className="hover:text-brand-orange">About 2Emarket</Link></li>
               <li><Link href="#" className="hover:text-brand-orange">About Our Factory</Link></li>
               <li><Link href="#" className="hover:text-brand-orange">Sitemap</Link></li>
             </ul>
@@ -46,7 +46,7 @@ export function Footer() {
       {/* Tier 2 */}
       <div className="bg-[#e8e8e8] py-4">
         <div className="max-w-[1440px] mx-auto px-10 text-center flex flex-col md:flex-row items-center justify-between text-[14px] text-alibaba-secondary">
-          <p>&copy; {new Date().getFullYear()} 2Emaeket. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} 2Emarket. All rights reserved.</p>
           <div className="flex gap-4 mt-2 md:mt-0">
             <Link href="#" className="hover:text-brand-orange">Terms of Use</Link>
             <Link href="#" className="hover:text-brand-orange">Privacy Policy</Link>
